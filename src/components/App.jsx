@@ -74,7 +74,7 @@ export class App extends Component {
   };
 
   render() {
-    const { images, isLoading, loadMore, page, showModal, largeImageURL } = this.state;
+    // const { images, isLoading, loadMore, page, showModal, largeImageURL } = this.state;
     return (
       <>
       </>
