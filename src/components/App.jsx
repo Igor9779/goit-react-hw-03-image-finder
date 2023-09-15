@@ -1,6 +1,11 @@
 import { Component } from "react";
 import { fetchPhotos } from "./services/api";
 import { animateScroll } from "react-scroll";
+import SearchBar from "./Searchbar/Searchbar";
+import Loader from "./Loader/Loader";
+import ImageGallery from "./ImageGallery/ImageGallery";
+import Button from "./Button/Button";
+import { Modal } from "./Modal/Modal";
 
 export class App extends Component {
   state = {
@@ -17,7 +22,6 @@ export class App extends Component {
   } 
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState.page)
     if (prevState.searchQuery !== this.state.searchQuery || prevState.page !== this.state.page) {
       this.getPhotos(this.state.searchQuery, this.state.page);
     }
@@ -74,9 +78,19 @@ export class App extends Component {
   };
 
   render() {
-    // const { images, isLoading, loadMore, page, showModal, largeImageURL } = this.state;
+    const { images, isLoading, loadMore, page, showModal, largeImageURL } = this.state;
     return (
       <>
+        <SearchBar onSubmit={this.formSubmit} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+            <ImageGallery images={images} openModal={this.openModal}/>
+        )}
+        {loadMore && <Button onLoadMore={this.onLoadMore} page={page} />}
+        {showModal && (
+          <Modal largeImageURL={largeImageURL} onClose={this.closeModal} />
+        )} 
       </>
     );
   }
