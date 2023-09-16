@@ -1,11 +1,12 @@
 import { Component } from "react";
 import { fetchPhotos } from "./services/api";
 import { animateScroll } from "react-scroll";
-import SearchBar from "./Searchbar/Searchbar";
-import Loader from "./Loader/Loader";
-import ImageGallery from "./ImageGallery/ImageGallery";
-import Button from "./Button/Button";
+import {SearchBar} from "./Searchbar/Searchbar";
+import {Loader} from "./Loader/Loader";
+import {ImageGallery} from "./ImageGallery/ImageGallery";
+import {Button} from "./Button/Button";
 import { Modal } from "./Modal/Modal";
+import { AppContainer } from "./App.styled";
 
 export class App extends Component {
   state = {
@@ -80,7 +81,7 @@ export class App extends Component {
   render() {
     const { images, isLoading, loadMore, page, showModal, largeImageURL } = this.state;
     return (
-      <>
+      <AppContainer>
         <SearchBar onSubmit={this.formSubmit} />
         {isLoading ? (
           <Loader />
@@ -91,7 +92,7 @@ export class App extends Component {
         {showModal && (
           <Modal largeImageURL={largeImageURL} onClose={this.closeModal} />
         )} 
-      </>
+      </AppContainer>
     );
   }
 }

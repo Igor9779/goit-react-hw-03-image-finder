@@ -1,10 +1,11 @@
+import { ButtonContainer, ButtonLoadMore } from "./Button.styled"
 
-const Button = ({loadingMore}) => {
+export const Button = ({onLoadMore}) => {
     return (
-        <div onClick={loadingMore}>
-            <button type="button">Load more</button>
-        </div>
+        <ButtonContainer onClick={onLoadMore}>
+            <ButtonLoadMore type="button">Load more</ButtonLoadMore>
+        </ButtonContainer>
     )
 }
 
-export default Button
+
